@@ -33,5 +33,3 @@ Put `.env` and `docker-compose.yml` inside the `/root/appwrite/` folder, adjust 
 ```shell
 docker-compose up -d
 ```
-
-In [.env](./services/.env) file replace `10.0.0.15` with your decentralized server IP.

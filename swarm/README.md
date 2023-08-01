@@ -1,11 +1,15 @@
-In [stack](./stack) run
+# Swarm
+
+Make sure to create a [decentralized](../decentralized) server first.
+
+## Connect to your decentralized server.
 
 ```shell
 # Setting the private key
 mv sshfs /root/.ssh/id_rsa
 chmod 600 /root/.ssh/id_rsa
 
-# Updating``
+# Updating
 apt update
 apt install sshfs
 
@@ -13,7 +17,7 @@ apt install sshfs
 mkdir /home/share
 
 # Add the mount, replace 10.0.0.15 with your decentralized server IP.
-echo 'root@10.0.0.15:/home/share /home/share fuse.sshfs allow_other,x-systemd.automount' >>/etc/fstab
+echo 'root@10.0.0.15:/home/share /home/share fuse.sshfs allow_other,x-systemd.automount' >> /etc/fstab
 
 # Run mount manually
 mount -a
@@ -22,31 +26,10 @@ mount -a
 ls /home/share
 ```
 
-## Use Ansible
+## Deploy your Swarm stack
 
-Create Docker Swarm deployment of Appwrite by running one Ansible command!
-
-Config files:
-
-- [vars.yml](ansible/config/vars.yml) - Config Swap name & size, database details password
-- [servers.yml](ansible/config/servers.yml) - Config the servers IP.
-
-### Create passwords
-
-To encrypt the database passwords, you'll need to use `ansible-vault` like so:
+Put `.env` and `docker-compose.yml` inside the `/root/appwrite/` folder, adjust the environment variables inside the `.env` file. Then run
 
 ```shell
-ansible-vault encrypt_string PASSWORD --ask-vault-pass
-```
-
-Replace `PASSWORD` with the desired one and set a password for the local vault.
-
-### Run
-Inside the [./ansible](./ansible) folder:
-
-```shell
-ansible-playbook appwrite.yml --ask-vault-pass
-
-# In case you didn't encrypt the database passwords you can run
-ansible-playbook appwrite.yml
+export $(grep -v '^#' .env | xargs) && docker stack config -c docker-compose.yml && docker stack deploy -c docker-compose.yml appwrite
 ```
