@@ -62,4 +62,4 @@ Grab a coffee ☕ and watch your infrastructure come to life.
 
 ## 🧙‍♂️ Looking for more?
 
-Check our official DevOps Book in [English](https://book.appread.io/) or in [Hebrew](https://book.appread.io/he/). 
+Check my official DevOps Book in [English](https://book.appread.io/) or in [Hebrew](https://book.appread.io/he/). 
