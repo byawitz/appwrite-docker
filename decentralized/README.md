@@ -5,16 +5,7 @@
 ```shell
 mkdir /home/share
 cd /home/share
-mkdir mariadb
-mkdir redis
-mkdir cache
-mkdir uploads
-mkdir certificates
-mkdir functions
-mkdir builds
-mkdir influxdb
-mkdir config
-mkdir executor
+mkdir mariadb redis cache uploads certificates functions builds influxdb config executor
 ```
 
 ## Create an SSH key
