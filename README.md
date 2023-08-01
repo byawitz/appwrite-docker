@@ -16,7 +16,7 @@ In this repo, you'll find all the necessary files needed for deploying Appwrite:
 | [Horizontal](./horizontal) | Scale your Appwrite left and right using multiple **services** servers |
 | [Swarm](./swarm)           | Scale your Appwrite using multiple docker **swarm** servers.           |
 
-### Add one
+### Addon
 
 | Name                             | Description                                                                                |
 |----------------------------------|--------------------------------------------------------------------------------------------|
