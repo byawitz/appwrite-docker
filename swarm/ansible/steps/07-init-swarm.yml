@@ -5,3 +5,7 @@
 - name: Get Worker Token
   command: docker swarm join-token worker -q
   register: worker_token
+
+- name: Get Manager Token
+  command: docker swarm join-token manager -q
+  register: manager_token

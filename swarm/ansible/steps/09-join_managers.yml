@@ -1,0 +1,3 @@
+- name: Swarm join manager
+  shell:
+    cmd: "docker swarm join --token {{  hostvars[groups['leader'][0]]['manager_token']['stdout'] }} {{ leader_address }}:2377"
