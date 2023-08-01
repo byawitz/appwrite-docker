@@ -1,0 +1,42 @@
+all:
+  hosts:
+    decentralized:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    worker_1:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    worker_2:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    worker_3:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    manager:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+
+db:
+  hosts:
+    decentralized:
+
+managers:
+  hosts:
+    manager:
+
+leader:
+  hosts:
+    manager:
+
+workers:
+  hosts:
+    worker_1:
+    worker_2:
+    worker_3:
+
+swarm:
+  hosts:
+    worker_1:
+    worker_2:
+    worker_3:
+    manager:

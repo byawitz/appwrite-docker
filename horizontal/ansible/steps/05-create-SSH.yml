@@ -1,0 +1,17 @@
+- name: Create SSH folder
+  shell:
+    cmd: "mkdir -p /root/.ssh"
+
+- name: Create SSH Key
+  shell:
+    cmd: 'yes | ssh-keygen -t ed25519 -f sshfs -q -N ""'
+    chdir: /root/.ssh
+
+- name: Add public key
+  shell:
+    cmd: "cat sshfs.pub >> /root/.ssh/authorized_keys"
+    chdir: /root/.ssh
+
+- name: Get the private key
+  command: cat /root/.ssh/sshfs
+  register: private_ssh

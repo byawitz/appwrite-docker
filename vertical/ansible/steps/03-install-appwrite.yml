@@ -1,0 +1,44 @@
+- name: Create Appwrite directory
+  file:
+    path: /root/appwrite
+    state: directory
+
+- name: Get Appwrite docker-compose file
+  ansible.builtin.get_url:
+    url: https://appwrite.io/install/compose
+    dest: /root/appwrite/docker-compose.yml
+
+- name: Get Appwrite dot env file
+  ansible.builtin.get_url:
+    url: https://appwrite.io/install/env
+    dest: /root/appwrite/.env
+
+- name: Set domain
+  shell:
+    cmd: "sed -i 's/localhost/{{ domain }}/g' .env"
+    chdir: /root/appwrite
+
+- name: Generate SSL Key
+  shell:
+    cmd: 'sed -i "s/V1=your-secret-key/V1=$(openssl rand -hex 256)/" .env'
+    chdir: /root/appwrite
+
+- name: Generate Executor Secret
+  shell:
+    cmd: 'sed -i "s/SECRET=your-secret-key/SECRET=$(openssl rand -hex 26)/" .env'
+    chdir: /root/appwrite
+
+- name: Generate DB root password
+  shell:
+    cmd: 'sed -i "s/rootsecretpassword/$(openssl rand -hex 32)/" .env'
+    chdir: /root/appwrite
+
+- name: Generate DB password
+  shell:
+    cmd: 'sed -i "s/password/$(openssl rand -hex 32)/" .env'
+    chdir: /root/appwrite
+
+- name: Start Appwrite
+  shell:
+    cmd: "docker compose up -d"
+    chdir: /root/appwrite

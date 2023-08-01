@@ -1,0 +1,39 @@
+- name: Create databases directory
+  file:
+    path: /root/databases
+    state: directory
+
+- name: Get decentralized docker-compose file
+  ansible.builtin.get_url:
+    url: https://book.appread.io/decentralized/docker-compose.yml
+    dest: /root/databases/docker-compose.yml
+
+- name: Get decentralized dot env file
+  ansible.builtin.get_url:
+    url: https://book.appread.io/decentralized/.env
+    dest: /root/databases/.env
+
+- name: Set Database user
+  shell:
+    cmd: "sed -i 's/appwrite_user/{{ mysql_user }}/g' .env"
+    chdir: /root/databases
+
+- name: Set Database name
+  shell:
+    cmd: "sed -i 's/appwrite_database/{{ mysql_database }}/g' .env"
+    chdir: /root/databases
+
+- name: Set DB root password
+  shell:
+    cmd: 'sed -i "s/change_root_passwrod/{{ mysql_root_password }}/" .env'
+    chdir: /root/databases
+
+- name: Set DB password
+  shell:
+    cmd: 'sed -i "s/change_user_password/{{ mysql_password }}/" .env'
+    chdir: /root/databases
+
+- name: Start decentralized
+  shell:
+    cmd: "docker compose up -d"
+    chdir: /root/databases

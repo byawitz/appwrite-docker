@@ -1,0 +1,54 @@
+- name: Create Main folder
+  file:
+    path: /home/share
+    state: directory
+
+- name: Create mariadb folder
+  file:
+    path: /home/share/mariadb
+    state: directory
+
+- name: Create redis folder
+  file:
+    path: /home/share/redis
+    state: directory
+
+- name: Create cache folder
+  file:
+    path: /home/share/cache
+    state: directory
+
+- name: Create uploads folder
+  file:
+    path: /home/share/uploads
+    state: directory
+
+- name: Create certificates folder
+  file:
+    path: /home/share/certificates
+    state: directory
+
+- name: Create functions folder
+  file:
+    path: /home/share/functions
+    state: directory
+
+- name: Create builds folder
+  file:
+    path: /home/share/builds
+    state: directory
+
+- name: Create influxdb folder
+  file:
+    path: /home/share/influxdb
+    state: directory
+
+- name: Create config folder
+  file:
+    path: /home/share/config
+    state: directory
+
+- name: Create executor folder
+  file:
+    path: /home/share/executor
+    state: directory

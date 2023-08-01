@@ -1,0 +1,28 @@
+all:
+  hosts:
+    decentralized:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    appwrite_1:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    appwrite_2:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    appwrite_3:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+    appwrite_4:
+      ansible_host: 5.161.161.161
+      ansible_user: root
+
+db:
+  hosts:
+    decentralized:
+
+appwrite:
+  hosts:
+    appwrite_1:
+    appwrite_2:
+    appwrite_3:
+    appwrite_4:

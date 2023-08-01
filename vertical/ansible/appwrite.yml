@@ -1,0 +1,20 @@
+---
+- hosts: appwrite
+
+  vars_files:
+    - config/vars.yml
+
+  vars_prompt:
+    - name: 'domain'
+      prompt: 'Your Appwrite domain'
+      private: no
+      default: 'localhost'
+
+  tasks:
+    - name: Create Swap file
+      import_tasks: steps/01-create-swap.yml
+    - name: Install Docker
+      import_tasks: steps/02-install-docker.yml
+    - name: Install Appwrite
+      import_tasks: steps/03-install-appwrite.yml
+

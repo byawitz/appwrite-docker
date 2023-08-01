@@ -1,0 +1,60 @@
+- name: Create Appwrite directory
+  file:
+    path: /root/appwrite
+    state: directory
+
+- name: Get Appwrite docker-compose file
+  ansible.builtin.get_url:
+    url: https://book.appread.io/appwrite-only/docker-compose.yml
+    dest: /root/appwrite/docker-compose.yml
+
+- name: Get Appwrite dot env file
+  ansible.builtin.get_url:
+    url: https://book.appread.io/appwrite-only/.env
+    dest: /root/appwrite/.env
+
+- name: Set domain
+  shell:
+    cmd: "sed -i 's/localhost/{{ domain }}/g' .env"
+    chdir: /root/appwrite
+
+- name: Set SSL Key
+  shell:
+    cmd: 'sed -i "s/V1=your-secret-key/V1={{ ssl_key }}/" .env'
+    chdir: /root/appwrite
+
+- name: Set Executor Secret
+  shell:
+    cmd: 'sed -i "s/SECRET=your-secret-key/SECRET={{ executor_secret }}/" .env'
+    chdir: /root/appwrite
+
+- name: Set Database user
+  shell:
+    cmd: "sed -i 's/appwrite_user/{{ mysql_user }}/g' .env"
+    chdir: /root/appwrite
+
+- name: Set Database name
+  shell:
+    cmd: "sed -i 's/appwrite_database/{{ mysql_database }}/g' .env"
+    chdir: /root/appwrite
+
+- name: Set DB root password
+  shell:
+    cmd: 'sed -i "s/change_root_passwrod/{{ mysql_root_password }}/" .env'
+    chdir: /root/appwrite
+
+- name: Set DB password
+  shell:
+    cmd: 'sed -i "s/change_user_password/{{ mysql_password }}/" .env'
+    chdir: /root/appwrite
+
+- name: Set DB IP
+  shell:
+    cmd: 'sed -i "s/10.0.0.15/{{ mysql_ip }}/g" .env'
+    chdir: /root/appwrite
+
+
+- name: Start Appwrite
+  shell:
+    cmd: "docker compose up -d"
+    chdir: /root/appwrite

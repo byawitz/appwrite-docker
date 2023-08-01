@@ -1,0 +1,51 @@
+---
+- hosts: all
+  vars_files:
+    - config/vars.yml
+
+  tasks:
+    - name: Create Swap file
+      import_tasks: steps/01-create-swap.yml
+    - name: Install Docker
+      import_tasks: steps/02-install-docker.yml
+
+- hosts: db
+  vars_files:
+    - config/vars.yml
+
+  tasks:
+    - name: Create folders
+      import_tasks: steps/04-volume-folders.yml
+    - name: Create SSH
+      import_tasks: steps/05-create-SSH.yml
+    - name: Create DB server
+      import_tasks: steps/03-create-databases.yml
+
+- hosts: swarm
+  vars_files:
+    - config/vars.yml
+  tasks:
+    - name: Mount folders
+      import_tasks: steps/06-mount-folders.yml
+
+
+- hosts: leader
+  vars_files:
+    - config/vars.yml
+  tasks:
+    - name: Creating the Swarm
+      import_tasks: steps/07-init-swarm.yml
+
+- hosts: workers
+  vars_files:
+    - config/vars.yml
+  tasks:
+    - name: Joining the Swarm
+      import_tasks: steps/08-join_workers.yml
+
+- hosts: leader
+  vars_files:
+    - config/vars.yml
+  tasks:
+    - name: Deploying Appwrite stack
+      import_tasks: steps/09-deploying-appwrite.yml

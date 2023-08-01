@@ -1,0 +1,39 @@
+- name: Install sshfs
+  apt:
+    pkg:
+      - sshfs
+    state: latest
+    update_cache: true
+
+- name: Create Main folder
+  file:
+    path: /home/share
+    state: directory
+
+- name: Create SSH folder
+  shell:
+    cmd: "mkdir -p /root/.ssh"
+
+- name: Create private SSH key
+  shell:
+    cmd: "echo '{{ hostvars[groups['db'][0]]['private_ssh']['stdout'] }}' > /root/.ssh/id_rsa"
+
+- name: Adjust SSH key permissions
+  shell:
+    cmd: "chmod 600 /root/.ssh/id_rsa"
+
+- name: Add SSHFS to fstab
+  shell:
+    cmd: "echo 'root@{{ mysql_ip }}:/home/share /home/share fuse.sshfs allow_other,x-systemd.automount' >> /etc/fstab"
+
+- name: Add server to known-hosts
+  shell:
+    cmd: 'ssh-keyscan -H {{ mysql_ip }} >> ~/.ssh/known_hosts'
+
+- name: Mount
+  shell:
+    cmd: "mount -a"
+
+- name: Reboot the server
+  ansible.builtin.reboot:
+    reboot_timeout: 300
