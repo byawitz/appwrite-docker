@@ -9,8 +9,8 @@
     dest: /root/appwrite/docker-compose.yml
 
 - name: Get Appwrite dot env file
-  ansible.builtin.copy:
-    src: ../../.env
+  ansible.builtin.get_url:
+    url: https://book.appread.io/swarm/.env
     dest: /root/appwrite/.env
 
 - name: Set domain
