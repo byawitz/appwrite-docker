@@ -1,25 +1,8 @@
-In [decentralized](./decentralized) run
+# Horizontal
 
-```shell
-mkdir /home/share
-cd /home/share
-mkdir mariadb
-mkdir redis
-mkdir cache
-mkdir uploads
-mkdir certificates
-mkdir functions
-mkdir builds
-mkdir influxdb
-mkdir config
-mkdir executor
+Make sure to create a [decentralized](../decentralized) server first.
 
-> ssh-keygen -t ed25519
-
-cat sshfs.pub >> /root/.ssh/authorized_keys
-```
-
-In [services](./services) run
+## Connect to your decentralized server.
 
 ```shell
 # Setting the private key
@@ -43,34 +26,12 @@ mount -a
 ls /home/share
 ```
 
+## Start docker compose
+
+Put `.env` and `docker-compose.yml` inside the `/root/appwrite/` folder, adjust the environment variables inside the `.env` file. Then run
+
+```shell
+docker-compose up -d
+```
+
 In [.env](./services/.env) file replace `10.0.0.15` with your decentralized server IP.
-
-## Use Ansible
-
-Create a decentralized deployment of Appwrite by running one Ansible command!
-
-Config files:
-
-- [vars.yml](ansible/config/vars.yml) - Config Swap name & size, database details password
-- [servers.yml](ansible/config/servers.yml) - Config for the servers IP.
-
-### Create passwords
-
-To encrypt the database passwords, you'll need to use `ansible-vault` like so:
-
-```shell
-ansible-vault encrypt_string PASSWORD --ask-vault-pass
-```
-
-Replace `PASSWORD` with the desired one and set a password for the local vault.
-
-### Run
-
-Inside the [./ansible](./ansible) folder:
-
-```shell
-ansible-playbook appwrite.yml --ask-vault-pass
-
-# In case you didn't encrypt the database passwords you can run
-ansible-playbook appwrite.yml
-```

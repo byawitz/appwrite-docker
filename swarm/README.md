@@ -1,24 +1,3 @@
-In [decentralized](./decentralized) run
-
-```shell
-mkdir /home/share
-cd /home/share
-mkdir mariadb
-mkdir redis
-mkdir cache
-mkdir uploads
-mkdir certificates
-mkdir functions
-mkdir builds
-mkdir influxdb
-mkdir config
-mkdir executor
-
-> ssh-keygen -t ed25519
-
-cat sshfs.pub >> /root/.ssh/authorized_keys
-```
-
 In [stack](./stack) run
 
 ```shell

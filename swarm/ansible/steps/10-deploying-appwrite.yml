@@ -4,13 +4,13 @@
     state: directory
 
 - name: Get Appwrite docker-compose file
-  ansible.builtin.get_url:
-    url: https://book.appread.io/swarm/docker-compose.yml
-    dest: /root/appwrite/docker-compose.yml
+  ansible.builtin.copy:
+    src: ../../docker-compose.yml
+    dest: /root/databases/docker-compose.yml
 
 - name: Get Appwrite dot env file
   ansible.builtin.get_url:
-    url: https://book.appread.io/swarm/.env
+    src: ../../.env
     dest: /root/appwrite/.env
 
 - name: Set domain
