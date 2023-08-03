@@ -2,6 +2,10 @@
 
 Make sure to create a [decentralized](../decentralized) server first.
 
+## Notice!
+
+Make sure the `leader` manager node hostname sets to `manager-1`. All other nodes can have any host name.
+
 ## Connect to your decentralized server.
 
 ```shell
@@ -33,3 +37,5 @@ Put `.env` and `docker-compose.yml` inside the `/root/appwrite/` folder, adjust 
 ```shell
 export $(grep -v '^#' .env | xargs) && docker stack config -c docker-compose.yml && docker stack deploy -c docker-compose.yml appwrite
 ```
+
+

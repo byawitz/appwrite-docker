@@ -1,43 +1,43 @@
 all:
   hosts:
     decentralized:
-      ansible_host: 5.161.47.125
+      ansible_host: 5.161.161.161
       ansible_user: root
     manager_1:
-      ansible_host: 5.161.184.233
+      ansible_host: 5.161.161.161
       ansible_user: root
     manager_2:
-      ansible_host: 5.161.182.117
+      ansible_host: 5.161.161.161
       ansible_user: root
     manager_3:
-      ansible_host: 5.161.209.27
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_1:
-      ansible_host: 5.161.102.4
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_2:
-      ansible_host: 5.161.52.160
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_3:
-      ansible_host: 5.161.108.150
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_4:
-      ansible_host: 5.161.191.184
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_5:
-      ansible_host: 5.161.217.46
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_6:
-      ansible_host: 5.161.192.66
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_7:
-      ansible_host: 5.161.49.161
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_8:
-      ansible_host: 5.161.52.9
+      ansible_host: 5.161.161.161
       ansible_user: root
     worker_9:
-      ansible_host: 5.161.66.74
+      ansible_host: 5.161.161.161
       ansible_user: root
 
 db:
