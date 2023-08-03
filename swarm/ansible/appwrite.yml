@@ -43,12 +43,12 @@
     - name: Joining the Swarm
       import_tasks: steps/08-join_workers.yml
 
-#- hosts: other_managers
-#  vars_files:
-#    - config/vars.yml
-#  tasks:
-#    - name: Joining other managers to the Swarm
-#      import_tasks: steps/09-join_managers.yml
+- hosts: other_managers
+  vars_files:
+    - config/vars.yml
+  tasks:
+    - name: Joining other managers to the Swarm
+      import_tasks: steps/09-join_managers.yml
 
 - hosts: leader
   vars_files:
