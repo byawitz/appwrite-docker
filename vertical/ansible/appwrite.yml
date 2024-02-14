@@ -9,6 +9,10 @@
       prompt: 'Your Appwrite domain'
       private: no
       default: 'localhost'
+    - name: 'functionsDomain'
+      prompt: 'Your Appwrite functions domain'
+      private: no
+      default: 'functions.localhost'
 
   tasks:
     - name: Create Swap file

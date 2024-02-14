@@ -13,6 +13,11 @@
     src: ../../.env
     dest: /root/appwrite/.env
 
+- name: Set function domain
+  shell:
+    cmd: "sed -i 's/functions.localhost/{{ functionsDomain }}/g' .env"
+    chdir: /root/appwrite
+
 - name: Set domain
   shell:
     cmd: "sed -i 's/localhost/{{ domain }}/g' .env"
