@@ -4,27 +4,25 @@
   register: checkSwapFile
 
 - name: Fail if it exists
-  fail:
-    msg: Swap file exists
-  when: checkSwapFile.stat.exists == true
+  when: checkSwapFile.stat.exists == false
+  block:
+    - name: Allocate the swap file
+      shell: fallocate -l {{ swap_size }} {{ swap_file }}
 
-- name: Allocate the swap file
-  shell: fallocate -l {{ swap_size }} {{ swap_file }}
+    - name: Change permission of the swap file
+      file:
+        path: "{{ swap_file }}"
+        mode: 600
 
-- name: Change permission of the swap file
-  file:
-    path: "{{ swap_file }}"
-    mode: 600
+    - name: Create a swap area on the swap file
+      shell: mkswap {{ swap_file }}
 
-- name: Create a swap area on the swap file
-  shell: mkswap {{ swap_file }}
+    - name: Activate the swap file as a swap memory
+      shell: swapon {{ swap_file }}
 
-- name: Activate the swap file as a swap memory
-  shell: swapon {{ swap_file }}
-
-- name: add to fstab
-  lineinfile:
-    dest: /etc/fstab
-    regexp: "{{ swap_file }}"
-    line: "{{ swap_file }} none swap sw 0 0"
+    - name: add to fstab
+      lineinfile:
+        dest: /etc/fstab
+        regexp: "{{ swap_file }}"
+        line: "{{ swap_file }} none swap sw 0 0"
 
