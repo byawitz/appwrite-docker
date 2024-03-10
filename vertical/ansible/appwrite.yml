@@ -15,8 +15,8 @@
       default: 'functions.localhost'
 
   tasks:
-    - name: Create Swap file
-      import_tasks: steps/01-create-swap.yml
+#    - name: Create Swap file
+#      import_tasks: steps/01-create-swap.yml
     - name: Install Docker
       import_tasks: steps/02-install-docker.yml
     - name: Install Appwrite
