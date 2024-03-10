@@ -1,6 +1,6 @@
 appwrite:
   hosts:
     main:
-      ansible_host: 5.161.228.43
+      ansible_host: 198.19.249.225
       ansible_user: root
 

@@ -3,7 +3,7 @@ domain: domain.com
 
 # Database
 ## it's best to use internal IP for the mysql_ip value
-mysql_ip: 10.1.0.4
+mysql_ip: 198.19.249.124
 mysql_user: appwrite
 mysql_database: appwrite
 mysql_password: !vault |

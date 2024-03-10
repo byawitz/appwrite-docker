@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb:
-    image: mariadb:10.7
+    image: mariadb:10.11
     container_name: appwrite-mariadb
     ports:
       - "3306:3306"
@@ -19,7 +19,7 @@ services:
     command: 'mysqld --innodb-flush-method=fsync'
 
   redis:
-    image: redis:7.0.4-alpine
+    image: redis:7.2.4-alpine
     container_name: appwrite-redis
     restart: unless-stopped
     ports:
@@ -33,17 +33,6 @@ services:
       - gateway
     volumes:
       - appwrite-redis:/data:rw
-
-  influxdb:
-    image: appwrite/influxdb:1.5.0
-    container_name: appwrite-influxdb
-    restart: unless-stopped
-    networks:
-      - gateway
-    ports:
-      - "8086:8086"
-    volumes:
-      - appwrite-influxdb:/var/lib/influxdb:rw
 
 networks:
   gateway:
@@ -61,9 +50,3 @@ volumes:
       type: volume
       o: "bind"
       device: "/home/share/redis"
-  appwrite-influxdb:
-    driver: local
-    driver_opts:
-      type: volume
-      o: "bind"
-      device: "/home/share/influxdb"
