@@ -9,8 +9,8 @@
     dest: /root/appwrite/docker-compose.yml
 
 - name: Get Appwrite dot env file
-  ansible.builtin.get_url:
-    url: https://book.appread.io/swarm/.env
+  ansible.builtin.copy:
+    src: ../../.env
     dest: /root/appwrite/.env
 
 - name: Set domain
@@ -50,7 +50,7 @@
 
 - name: Set DB IP
   shell:
-    cmd: 'sed -i "s/10.0.0.15/{{ mysql_ip }}/g" .env'
+    cmd: 'sed -i "s/ip.database.com/{{ mysql_ip }}/g" .env'
     chdir: /root/appwrite
 
 - name: Deploying Appwrite

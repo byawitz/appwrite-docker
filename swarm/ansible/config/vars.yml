@@ -1,10 +1,10 @@
 ---
 domain: domain.com
-leader_address: 10.1.0.4
+leader_address: 198.19.249.113
 
 # Database
 ## it's best to use internal IP for the mysql_ip value
-mysql_ip: 10.1.0.2
+mysql_ip: dec.orb.local
 mysql_user: appwrite
 mysql_database: appwrite
 mysql_password: password
