@@ -760,11 +760,14 @@ services:
 
 networks:
   gateway:
-    name: gateway
+    driver: overlay
+    attachable: true
   appwrite:
-    name: appwrite
+    driver: overlay
+    attachable: true
   runtimes:
-    name: runtimes
+    driver: overlay
+    attachable: true
 
 
 volumes:
